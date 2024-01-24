@@ -1,24 +1,22 @@
-import { access, writeFile } from 'node:fs';
-import { throwError } from './throwError.js'
+import { writeFile } from 'node:fs';
+import { checkAccess } from './utils/checkAccess.js';
+import { throwError } from './utils/throwError.js'
 
 const create = async () => {
   const path = 'src/fs/files/fresh.txt';
   const content = 'I am fresh and young';
 
-  access(path, (err) => {
-    if (err) {
-      writeFile(path, content, (error) => {
-        if (error) {
-          console.error(error)
-        } else {
-          console.log('File created successfully');
-        }
-      })
-    } else {
-      throwError();
-    }
-  })
-  
+  const callback = () => {
+    writeFile(path, content, (error) => {
+      if (error) {
+        console.error(error)
+      } else {
+        console.log('File created successfully');
+      }
+    })
+  };
+
+  checkAccess(path, throwError, callback);  
 };
 
 await create();
