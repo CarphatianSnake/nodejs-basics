@@ -1,4 +1,5 @@
 import { access, readFile } from 'node:fs';
+import { throwError } from './throwError.js';
 
 const read = async () => {
   const path = 'src/fs/files/fileToRead.txt';
@@ -6,7 +7,7 @@ const read = async () => {
 
   access(path, (err) => {
     if (err) {
-      throw new Error('FS operation failed');
+      throwError();
     } else {
       readFile(path, encoding, (err, data) => {
         if (err) {

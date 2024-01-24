@@ -1,4 +1,5 @@
 import { access, writeFile } from 'node:fs';
+import { throwError } from './throwError.js'
 
 const create = async () => {
   const path = 'src/fs/files/fresh.txt';
@@ -14,7 +15,7 @@ const create = async () => {
         }
       })
     } else {
-      throw new Error('FS operation failed');
+      throwError();
     }
   })
   

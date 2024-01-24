@@ -1,4 +1,5 @@
 import { access, cp } from 'node:fs';
+import { throwError } from './throwError.js';
 
 const copy = async () => {
   const path = 'src/fs/';
@@ -7,7 +8,7 @@ const copy = async () => {
 
   access(dir, (err) => {
     if (err) {
-      throw new Error('FS operation failed');
+      throwError();
     } else {
       access(newDir, (err) => {
         if (err) {
@@ -19,7 +20,7 @@ const copy = async () => {
             }
           });
         } else {
-          throw new Error('FS operation failed');
+          throwError();
         }
       })
     }

@@ -1,11 +1,12 @@
 import { access, unlink } from 'node:fs';
+import { throwError } from './throwError.js';
 
 const remove = async () => {
   const path = 'src/fs/files/fileToRemove.txt';
 
   access(path, (err) => {
     if (err) {
-      throw new Error('FS operation failed');
+      throwError();
     } else {
       unlink(path, (error) => {
         if (err) {

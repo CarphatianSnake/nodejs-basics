@@ -1,4 +1,5 @@
 import { access, rename as renameFile } from 'node:fs';
+import { throwError } from './throwError.js';
 
 const rename = async () => {
   const path = 'src/fs/files/';
@@ -9,7 +10,7 @@ const rename = async () => {
   
   access(oldFilePath, (err) => {
     if (err) {
-      throw new Error('FS operation failed');
+      throwError();
     } else {
       access(newFilePath, (err) => {
         if (err) {
@@ -21,7 +22,7 @@ const rename = async () => {
             }
           })
         } else {
-          throw new Error('FS operation failed');
+          throwError();
         }
       })
     }
