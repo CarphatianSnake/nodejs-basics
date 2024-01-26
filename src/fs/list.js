@@ -1,9 +1,10 @@
 import { readdir } from 'node:fs';
 import { checkAccess } from './utils/checkAccess.js';
 import { throwError } from './utils/throwError.js';
+import { join } from 'node:path';
 
 const list = async () => {
-  const path = 'src/fs/files/';
+  const path = join('src', 'fs', 'files');
 
   const callback = () => {
     readdir(path, (error, files) => {

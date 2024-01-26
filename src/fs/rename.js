@@ -1,13 +1,12 @@
 import { rename as renameFile } from 'node:fs';
 import { checkAccess } from './utils/checkAccess.js';
 import { throwError } from './utils/throwError.js';
+import { join } from 'node:path';
 
 const rename = async () => {
-  const path = 'src/fs/files/';
-  const oldFile = 'wrongFilename.txt';
-  const newFile = 'properFilename.md';
-  const oldFilePath = path + oldFile;
-  const newFilePath = path + newFile;
+  const path = join('src', 'fs', 'files');
+  const oldFilePath = join(path, 'wrongFilename.txt');
+  const newFilePath = join(path, 'properFilename.md');
 
   const callback = () => {
     renameFile(oldFilePath, newFilePath, (error) => {

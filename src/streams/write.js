@@ -1,8 +1,9 @@
 import { createWriteStream } from 'node:fs';
 import { stdin } from 'node:process';
+import { join } from 'node:path';
 
 const write = async () => {
-  const path = 'src/streams/files/fileToWrite.txt';
+  const path = join('src', 'streams', 'files', 'fileToWrite.txt');
   const encoding = 'utf8';
   const stream = createWriteStream(path, { encoding });
 

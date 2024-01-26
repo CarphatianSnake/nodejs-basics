@@ -1,9 +1,11 @@
 import { createReadStream } from 'node:fs';
 import { createHash } from 'node:crypto';
+import { join } from 'node:path';
 
 const calculateHash = async () => {
   const hash = createHash('sha256');
-  const input = createReadStream('src/hash/files/fileToCalculateHashFor.txt');
+  const path = join('src', 'hash', 'files', 'fileToCalculateHashFor.txt');
+  const input = createReadStream(path);
 
   input.on('readable', () => {
     const chunk = input.read();

@@ -1,9 +1,10 @@
 import { writeFile } from 'node:fs';
 import { checkAccess } from './utils/checkAccess.js';
-import { throwError } from './utils/throwError.js'
+import { throwError } from './utils/throwError.js';
+import { join } from 'node:path';
 
 const create = async () => {
-  const path = 'src/fs/files/fresh.txt';
+  const path = join('src', 'fs', 'files', 'fresh.txt');
   const content = 'I am fresh and young';
 
   const callback = () => {

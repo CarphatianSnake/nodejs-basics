@@ -1,11 +1,12 @@
 import { cp } from 'node:fs';
 import { checkAccess } from './utils/checkAccess.js';
 import { throwError } from './utils/throwError.js';
+import { join } from 'node:path';
 
 const copy = async () => {
-  const path = 'src/fs/';
-  const dir = path + 'files';
-  const newDir = path + 'files_copy';
+  const path = join('src', 'fs');
+  const dir = join(path, 'files');
+  const newDir = join(path, 'files_copy');
 
   const callback = () => {
     cp(dir, newDir, { recursive: true }, (error) => {

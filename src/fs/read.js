@@ -1,9 +1,10 @@
 import { readFile } from 'node:fs';
 import { checkAccess } from './utils/checkAccess.js';
 import { throwError } from './utils/throwError.js';
+import { join } from 'node:path';
 
 const read = async () => {
-  const path = 'src/fs/files/fileToRead.txt';
+  const path = join('src', 'fs', 'files', 'fileToRead.txt');
   const encoding = 'utf8';
 
   const callback = () => {
