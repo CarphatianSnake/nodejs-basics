@@ -9,7 +9,7 @@ const write = async () => {
 
   stdin.on('data', (chunk) => {
     stream.write(chunk);
-  }) 
+  })
 };
 
 await write();
