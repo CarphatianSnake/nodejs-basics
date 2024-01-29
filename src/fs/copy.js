@@ -1,4 +1,4 @@
-import { cp } from 'node:fs';
+import { readdir, mkdir, copyFile } from 'node:fs';
 import { checkAccess } from './utils/checkAccess.js';
 import { throwError } from './utils/throwError.js';
 import { join } from 'node:path';
@@ -9,13 +9,28 @@ const copy = async () => {
   const newDir = join(path, 'files_copy');
 
   const callback = () => {
-    cp(dir, newDir, { recursive: true }, (error) => {
+    readdir(dir, (error, files) => {
       if (error) {
         console.error(error);
       } else {
-        console.log('Folder copied successfully');
+        mkdir(newDir, { recursive: true }, (err, pathname) => {
+          if (err) {
+            console.error(err);
+          } else {
+            files.forEach((file) => {
+              const source = join(dir, file);
+              const destination = join(pathname, file);
+
+              copyFile(source, destination, (e) => {
+                if (e) {
+                  console.error(e);
+                }
+              })
+            })
+          }
+        });
       }
-    });
+    })
   }
 
   const checkNewDir = () => {
